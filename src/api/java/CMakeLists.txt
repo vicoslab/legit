@@ -1,0 +1,63 @@
+
+CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
+
+#SET(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_BINARY_DIR})
+
+SET(JAVA_SRC 
+    ${CMAKE_CURRENT_SOURCE_DIR}/org/legit/Rectangle.java
+    ${CMAKE_CURRENT_SOURCE_DIR}/org/legit/Point.java
+    ${CMAKE_CURRENT_SOURCE_DIR}/org/legit/TrackerException.java
+    ${CMAKE_CURRENT_SOURCE_DIR}/org/legit/LegitNative.java
+    ${CMAKE_CURRENT_SOURCE_DIR}/org/legit/LegitProperties.java
+)
+
+ADD_LIBRARY(jlegit SHARED jlegit.cpp)
+TARGET_LINK_LIBRARIES(jlegit legit)
+
+GET_PROPERTY(NATIVE_LIBRARY_LOCATION TARGET jlegit PROPERTY LOCATION)
+GET_FILENAME_COMPONENT(NATIVE_LIBRARY_NAME ${NATIVE_LIBRARY_LOCATION} NAME)
+
+
+    INCLUDE_DIRECTORIES(AFTER SYSTEM ./)
+    INCLUDE(FindJava)
+    INCLUDE(FindJNI)
+    IF (NOT JAVA_INCLUDE_PATH)
+        IF (UNIX)
+            SET(JAVA_INCLUDE_PATH /usr/lib/jvm/java-6-sun/include/)
+            SET(JAVA_INCLUDE_PATH_EXT /usr/lib/jvm/java-6-sun/include/linux/)
+        ENDIF (UNIX)
+    ENDIF (NOT JAVA_INCLUDE_PATH)
+    INCLUDE_DIRECTORIES(${JAVA_INCLUDE_PATH} ${JAVA_INCLUDE_PATH_EXT} ${CMAKE_CURRENT_SOURCE_DIR})
+
+    LIST(APPEND JAVA_SRC 
+        ${CMAKE_CURRENT_SOURCE_DIR}/org/legit/Tracker.java 
+        ${CMAKE_CURRENT_SOURCE_DIR}/org/legit/TrackerDemo.java
+    )
+
+    FOREACH(SRCFILE ${JAVA_SRC})
+
+        GET_FILENAME_COMPONENT(FILEROOT ${SRCFILE} NAME_WE )
+        LIST(APPEND JAVA_CLASSES ${CMAKE_CURRENT_BINARY_DIR}/org/legit/${FILEROOT}.class)
+
+    ENDFOREACH(SRCFILE ${JAVA_SRC} )
+
+    ADD_CUSTOM_COMMAND(OUTPUT ${JAVA_CLASSES}
+        COMMAND ${JAVA_COMPILE}
+        -classpath ${CMAKE_CURRENT_BINARY_DIR} ${JAVA_GENERATED_SRC} ${JAVA_SRC}
+        -d ${CMAKE_CURRENT_BINARY_DIR} 
+        DEPENDS ${JAVA_SRC} jlegit
+        COMMENT "Building Java binding"
+    )
+    ADD_CUSTOM_COMMAND(
+        OUTPUT ${LIBRARY_OUTPUT_PATH}/jlegit.jar
+        COMMAND ${JAVA_ARCHIVE}
+        -cf ${LIBRARY_OUTPUT_PATH}/jlegit.jar
+        -C "${LIBRARY_OUTPUT_PATH}"
+        ${NATIVE_LIBRARY_NAME}
+        -C "${CMAKE_CURRENT_BINARY_DIR}"
+        "org/legit/*.class"
+        DEPENDS ${JAVA_CLASSES} jlegit
+        COMMENT "Creating JAR file"
+        )
+
+    ADD_CUSTOM_TARGET(LegitJava ALL DEPENDS jlegit ${LIBRARY_OUTPUT_PATH}/jlegit.jar)
