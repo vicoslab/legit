@@ -40,8 +40,7 @@ using namespace std;
 #define LEGIT_PROPERTY_JAVA_RESCALE_WIDTH 1001
 #define LEGIT_PROPERTY_JAVA_RESCALE_HEIGHT 1002
 
-class LegitTracker
-{
+class LegitTracker {
 
 public:
 
@@ -91,15 +90,13 @@ private:
 #include <cv.h>
 #endif
 
-#ifdef BUILD_C_API
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 struct CLegitTracker;
 
 typedef struct CLegitTracker CLegitTracker;
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 CLegitTracker* legit_tracker_create(const char* config);
 
@@ -127,21 +124,10 @@ void legit_remove_property(CLegitTracker *t, int code);
 
 int legit_has_property(CLegitTracker *t, int code);
 
-#ifdef __cplusplus
-}
-#endif
-
-#endif
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 int legit_toggle_debugging();
 
 #ifdef __cplusplus
 }
 #endif
-
 
 #endif

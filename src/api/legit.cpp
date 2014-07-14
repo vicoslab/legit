@@ -215,8 +215,6 @@ bool LegitTracker::has_property(int code)
 
 }
 
-#ifdef BUILD_C_API
-
 struct CLegitTracker : public LegitTracker {};
 
 extern "C" {
@@ -305,12 +303,6 @@ extern "C" {
     return t->has_property(code) ? 1 : 0;
 
   }
-
-}
-
-#endif
-
-extern "C" {
 
   int legit_toggle_debugging()
   {
