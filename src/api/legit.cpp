@@ -95,7 +95,7 @@ void LegitTracker::update_image(Mat& image, int imagetype)
   if (imagetype > -1)
     impl->image.update(image, imagetype, false);
   else
-    impl->image.update(image, false);
+    impl->image.update(image);
 
 }
 
