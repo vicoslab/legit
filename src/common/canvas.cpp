@@ -51,8 +51,8 @@ void drawcross(Mat& image, Point center, Scalar color, int size, bool sideways)
     }
   else
     {
-      line( image, Point( center.x - size, center.y - size ), Point( center.x + size, center.y + size), color, 1, LINE_AA, 0);
-      line( image, Point( center.x + size, center.y - size ), Point( center.x - size, center.y + size ), color, 1, LINE_AA, 0 );
+      line( image, Point( center.x - size, center.y - size ), Point( center.x + size, center.y + size), color, 1, 16, 0);
+      line( image, Point( center.x + size, center.y - size ), Point( center.x - size, center.y + size ), color, 1, 16, 0 );
     }
 }
 

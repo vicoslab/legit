@@ -200,14 +200,14 @@ void ModalityColor3DHistogram::update(Image& image, PatchSet* patchSet, Rect bou
   fillconvex(mask, convex_points, convex_points.size(), Scalar(1));*/
 
   Rect outer = expand(bounds, background_size + background_margin);
-  rectangle(mask, outer.tl(), outer.br(), Scalar(1), FILLED);
+  rectangle(mask, outer.tl(), outer.br(), Scalar(1), CV_FILLED);
   Rect inner = expand(bounds, background_margin);
-  rectangle(mask, inner.tl(), inner.br(), Scalar(0), FILLED);
+  rectangle(mask, inner.tl(), inner.br(), Scalar(0), CV_FILLED);
 
 
-  rectangle(mask, background_outer.tl(), background_outer.br(), Scalar(1), FILLED);
+  rectangle(mask, background_outer.tl(), background_outer.br(), Scalar(1), CV_FILLED);
 
-  rectangle(mask, background_inner.tl(), background_inner.br(), Scalar(0), FILLED);
+  rectangle(mask, background_inner.tl(), background_inner.br(), Scalar(0), CV_FILLED);
 
   calcHist(arrays, 1, channels, mask, new_background, 3, histSize, ranges, true, false);
 

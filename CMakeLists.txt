@@ -13,26 +13,26 @@ SET(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_BINARY_DIR})
 SET(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_BINARY_DIR})
 
 LEGIT_ADD_SOURCES(
-	src/common/utils/utils.cpp 
-	src/common/utils/config.cpp 
+	src/common/utils/utils.cpp
+	src/common/utils/config.cpp
 	src/common/utils/graphics.cpp
-	src/common/utils/debug.cpp 
-	src/common/utils/string.cpp 
-	src/common/image/histogram.cpp 
-	src/common/image/sequence.cpp 
-	src/common/image/image.cpp 
+	src/common/utils/debug.cpp
+	src/common/utils/string.cpp
+	src/common/image/histogram.cpp
+	src/common/image/sequence.cpp
+	src/common/image/image.cpp
 	src/common/image/integral.cpp
-	src/common/math/statistics.cpp 
-	src/common/math/geometry.cpp 
-	src/common/gui/gui.cpp 
-	src/common/gui/window.cpp 
+	src/common/math/statistics.cpp
+	src/common/math/geometry.cpp
+	src/common/gui/gui.cpp
+	src/common/gui/window.cpp
 	src/common/canvas.cpp
     src/api/legit.cpp
     src/observers.cpp
 	src/tracker.cpp
 )
 
-ADD_SUBDIRECTORY(src/common/platform) 
+ADD_SUBDIRECTORY(src/common/platform)
 
 SET(BUILD_DEBUG TRUE CACHE BOOL "Enable debug support")
 
@@ -48,10 +48,10 @@ SET(BUILD_FAST_MATH TRUE CACHE BOOL "Enable approximate math routines")
 
 IF(BUILD_FAST_MATH)
 	ADD_DEFINITIONS(-DBUILD_FAST_MATH)
-	LEGIT_ADD_SOURCES(src/common/math/mersenne.cpp)	
+	LEGIT_ADD_SOURCES(src/common/math/mersenne.cpp)
 ENDIF(BUILD_FAST_MATH)
 
-ADD_SUBDIRECTORY(src/trackers/) 
+ADD_SUBDIRECTORY(src/trackers/)
 
 LEGIT_GENERATE_HEADERS(${CMAKE_CURRENT_BINARY_DIR})
 ADD_DEFINITIONS(-DBUILTIN_CONFIG="config.h")
@@ -60,7 +60,7 @@ ADD_DEFINITIONS(-DBUILTIN_TRACKERS="trackers.h")
 set_property(SOURCE src/tracker.cpp APPEND PROPERTY OBJECT_DEPENDS "${BUILD_ROOT}/trackers.h" "${BUILD_ROOT}/config.h")
 
 
-ADD_SUBDIRECTORY(src/api/) 
+ADD_SUBDIRECTORY(src/api/)
 
 
 
@@ -69,7 +69,7 @@ ADD_LIBRARY(legit_static STATIC $<TARGET_OBJECTS:legit_objects>)
 ADD_LIBRARY(legit SHARED $<TARGET_OBJECTS:legit_objects>)
 
 
-SET(BUILD_TRAX TRUE CACHE BOOL "Enable TraX protocol support (requires libtrax)")
+SET(BUILD_TRAX FALSE CACHE BOOL "Enable TraX protocol support (requires libtrax)")
 
 IF(BUILD_TRAX)
 	SET(TRAX_DEBUG FALSE CACHE BOOL "Enable TraX debug")
