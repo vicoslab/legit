@@ -69,5 +69,19 @@ ADD_LIBRARY(legit_static STATIC $<TARGET_OBJECTS:legit_objects>)
 ADD_LIBRARY(legit SHARED $<TARGET_OBJECTS:legit_objects>)
 
 
+SET(BUILD_TRAX FALSE CACHE BOOL "Enable TraX protocol support (requires libtrax)")
+
+IF(BUILD_TRAX)
+	SET(TRAX_DEBUG FALSE CACHE BOOL "Enable TraX debug")
+	ADD_DEFINITIONS(-DBUILD_TRAX)
+	TARGET_LINK_LIBRARIES(legit trax)
+	IF(TRAX_DEBUG)
+		ADD_DEFINITIONS(-DTRAX_DEBUG)
+ 	ENDIF(TRAX_DEBUG)
+ENDIF(BUILD_TRAX)
+
+ADD_EXECUTABLE(legit_runner src/runner.cpp)
+TARGET_LINK_LIBRARIES(legit_runner legit)
+
 INSTALL(TARGETS legit LIBRARY DESTINATION lib)
 INSTALL(FILES src/api/legit.h DESTINATION include)
