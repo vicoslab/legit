@@ -198,7 +198,7 @@ void ModalityBounding::probability(Image& image, Mat& p)
 
   p.setTo(0);
 
-  rectangle(p, r.tl(), r.br(), Scalar(1), FILLED);
+  rectangle(p, r.tl(), r.br(), Scalar(1), CV_FILLED);
 
   p /= sum(p)[0];
 

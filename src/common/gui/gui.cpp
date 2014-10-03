@@ -337,7 +337,7 @@ void Menu::draw(Ptr<Canvas> window)
   offset.x = (window->width() - menuSize.width) / 2;
   offset.y = (window->height() - menuSize.height) / 2;
 
-  window->rectangle(offset, offset + menuSize, background, FILLED);
+  window->rectangle(offset, offset + menuSize, background, CV_FILLED);
   window->rectangle(offset, offset + menuSize, foreground, 1);
 
   Point buttonOffset = offset + __PANELMARGIN;
@@ -350,7 +350,7 @@ void Menu::draw(Ptr<Canvas> window)
       Point textOffset = buttonOffset;
 //        textOffset.x += sz
 
-      window->rectangle(buttonOffset, buttonOffset + buttonSize, i == selected ? foreground : background, FILLED);
+      window->rectangle(buttonOffset, buttonOffset + buttonSize, i == selected ? foreground : background, CV_FILLED);
       window->rectangle(buttonOffset, buttonOffset + buttonSize, i == selected ? background : foreground, 1);
 
       window->text(textOffset, choices[i].c_str(), i == selected ? background : foreground);
