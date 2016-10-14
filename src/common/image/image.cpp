@@ -36,7 +36,7 @@ namespace legit
 namespace common
 {
 
-Image::Image() : offset(0, 0), integral_image(NULL), inthist16(NULL), inthist32(NULL)
+Image::Image() : inthist16(NULL), inthist32(NULL), integral_image(NULL), offset(0, 0)
 {
 
   reset();
@@ -45,7 +45,7 @@ Image::Image() : offset(0, 0), integral_image(NULL), inthist16(NULL), inthist32(
 
 }
 
-Image::Image(int width, int height) : offset(0, 0), integral_image(NULL), inthist16(NULL), inthist32(NULL)
+Image::Image(int width, int height) : inthist16(NULL), inthist32(NULL), integral_image(NULL), offset(0, 0)
 {
 
   reset();
@@ -57,14 +57,14 @@ Image::Image(int width, int height) : offset(0, 0), integral_image(NULL), inthis
 
 }
 
-Image::Image(const std::string& path) : offset(0, 0), integral_image(NULL), inthist16(NULL), inthist32(NULL)
+Image::Image(const std::string& path) : inthist16(NULL), inthist32(NULL), integral_image(NULL), offset(0, 0)
 {
 
   load(path);
 
 }
 
-Image::Image(Mat& src) : offset(0, 0), integral_image(NULL), inthist16(NULL), inthist32(NULL)
+Image::Image(Mat& src) : inthist16(NULL), inthist32(NULL), integral_image(NULL), offset(0, 0)
 {
 
   update(src);
@@ -72,7 +72,7 @@ Image::Image(Mat& src) : offset(0, 0), integral_image(NULL), inthist16(NULL), in
 }
 
 // TODO: improve !!!
-Image::Image(Image& image, Rect region) : offset(0, 0), integral_image(NULL), inthist16(NULL), inthist32(NULL)
+Image::Image(Image& image, Rect region) : inthist16(NULL), inthist32(NULL), integral_image(NULL), offset(0, 0)
 {
 
   copy_region(image, region);
