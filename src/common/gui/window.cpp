@@ -48,7 +48,6 @@ void _imagewindow_mousecallback(int event, int x, int y, int flags, void *param)
 {
 
   Rect *r = &(((MouseCallbackState*) param)->result);
-  ImageWindow* w = ((MouseCallbackState*) param)->window;
 
   if (event != EVENT_LBUTTONDOWN) return;
 

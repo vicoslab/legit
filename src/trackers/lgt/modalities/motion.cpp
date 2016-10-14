@@ -112,7 +112,7 @@ void ModalityMotionLK::update(Image& image, PatchSet* patchSet, Rect bounds)
       map.setTo(0);
     }
 
-  float texture_threshold = 3;
+//  float texture_threshold = 3;
 
   // a simple hack (otherwise this function takes too much time)
   Rect roi = intersection(image.get_roi(), expand(patches->region(), 50));

@@ -54,8 +54,6 @@ void cross_entropy_global_move(Image& image, PatchSet& patches, Matrix& mean, Ma
   Matrix globalC = covariance;
   Matrix globalM = mean;
 
-  Point2f center = patches.mean_position();
-
   double gamma_low = 0;
   double gamma_high = 0;
 
@@ -65,7 +63,7 @@ void cross_entropy_global_move(Image& image, PatchSet& patches, Matrix& mean, Ma
   Mat_<double> global_elite_samples = Mat_<double>(params.elite_samples, 2); // this matrix stores elite global CE parameters
   Mat_<double> global_elite_weights = Mat_<double>(params.elite_samples, 1); // this vector stores elite global CE weighths / responses
 
-  Rect4f region = patches.region();
+//    Rect4f region = patches.region();
 //    region.x = -region.width / 2;
 //    region.y = -region.height / 2;
 
@@ -73,8 +71,6 @@ void cross_entropy_global_move(Image& image, PatchSet& patches, Matrix& mean, Ma
   int i;
   for (i = 0; i < params.iterations; i++)
     {
-
-      int count = patches.size();
 
       int samples_count = 0;
       sample_gaussian2(globalM, globalC, params.min_samples, global_samples, samples_count);
@@ -233,8 +229,6 @@ void cross_entropy_global_affine(Image& image, PatchSet& patches, Matrix& mean, 
   int i;
   for (i = 0; i < params.iterations; i++)
     {
-
-      int count = patches.size();
 
       int samples_count = 0;
 
@@ -441,8 +435,6 @@ void cross_entropy_global_affine2(OptimizationStatus& status, ResponseFunction& 
   int i;
   for (i = 0; i < params.iterations; i++)
     {
-
-      int count = status.size();
 
       int samples_count = 0;
       sample_gaussian2(globalM, globalC, params.min_samples, global_samples, samples_count);

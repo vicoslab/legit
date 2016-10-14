@@ -369,9 +369,6 @@ void LGTTracker::track(Image& image, bool announce, bool push, DebugOutput* debu
 
         //proxy.rectangle(region(), Scalar(0, 255, 0), 2);
 
-        float ppx = statePost.at<float>(2, 0) ;
-        float ppy = statePost.at<float>(3, 0) ;
-
         pred.x = mean.x + statePost.at<float>(2, 0) * motion.transitionMatrix.at<float>(0, 2) ;
         pred.y = mean.y + statePost.at<float>(3, 0) * motion.transitionMatrix.at<float>(1, 3) ;
         proxy.line(mean, pred, Scalar(100, 255, 120), 2);
@@ -415,8 +412,6 @@ void LGTTracker::stage_optimization(Image& image, bool announce, bool push, Debu
 
   if (announce) notify_stage(STAGE_OPTIMIZATION_GLOBAL);
 
-  cv::Point2f center = patches.mean_position();
-
   OptimizationStatus status(patches);
 
   if (optimization_global_R < 0.00001 && optimization_global_S < 0.00001)
@@ -448,7 +443,7 @@ void LGTTracker::stage_optimization(Image& image, bool announce, bool push, Debu
 //printpoint(status[i].position);
       PatchStatus ps = status.get(i);
       patches.set_position(i, ps.position);
-      float value = exp(-patches.response(image, i, ps.position)); //
+      //float value = exp(-patches.response(image, i, ps.position)); //
       //  if (value > 0.8) status.set_flags(i, OPTIMIZATION_FIXED); // Zakaj mora biti vecji ravno od 0.8
 
 //        }
@@ -731,9 +726,6 @@ void LGTTracker::visualize(Canvas& canvas)
       canvas.ellipse(mean, cov, Scalar(0, 0, 255));
 
       canvas.rectangle(region(), Scalar(0, 255, 0), 2);
-
-      float ppx = statePost.at<float>(2, 0) ;
-      float ppy = statePost.at<float>(3, 0) ;
 
       pred.x = mean.x + statePost.at<float>(2, 0) * motion.transitionMatrix.at<float>(0, 2) ;
       pred.y = mean.y + statePost.at<float>(3, 0) * motion.transitionMatrix.at<float>(1, 3) ;

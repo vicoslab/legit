@@ -69,7 +69,7 @@ void initialize_canvases(Config& config)
 
   vector<CanvasDescription> descriptions;
 
-  char tmpconfig[256];
+//  char tmpconfig[256];
 
   vector<string> config_keys = config.keys();
 
@@ -344,8 +344,8 @@ void Menu::draw(Ptr<Canvas> window)
 
   for (int i = 0; i < choices.size(); i++)
     {
-      int baseline = 0;
-      Size sz = getTextSize(choices[i].c_str(), FONT_HERSHEY_SIMPLEX, 0.4, 1, &baseline);
+//      int baseline = 0;
+//      Size sz = getTextSize(choices[i].c_str(), FONT_HERSHEY_SIMPLEX, 0.4, 1, &baseline);
 
       Point textOffset = buttonOffset;
 //        textOffset.x += sz

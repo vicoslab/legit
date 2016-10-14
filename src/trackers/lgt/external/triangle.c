@@ -12702,7 +12702,6 @@ vertex endpoint2;
   vertex leftvertex, rightvertex;
   vertex newvertex;
   enum insertvertexresult success;
-  enum finddirectionresult collinear;
   REAL ex, ey;
   REAL tx, ty;
   REAL etx, ety;
@@ -12780,7 +12779,7 @@ vertex endpoint2;
 
   /* Inserting the vertex may have caused edge flips.  We wish to rediscover */
   /*   the edge connecting endpoint1 to the new intersection vertex.         */
-  collinear = finddirection(m, b, splittri, endpoint1);
+  finddirection(m, b, splittri, endpoint1);
   dest(*splittri, rightvertex);
   apex(*splittri, leftvertex);
   if ((leftvertex[0] == endpoint1[0]) && (leftvertex[1] == endpoint1[1]))
@@ -14380,7 +14379,6 @@ struct behavior *b;
 
 {
   struct osub subsegloop;
-  int dummy;
 
   traversalinit(&m->subsegs);
   subsegloop.ssorient = 0;
@@ -14388,7 +14386,7 @@ struct behavior *b;
   while (subsegloop.ss != (subseg *) NULL)
     {
       /* If the segment is encroached, add it to the list. */
-      dummy = checkseg4encroach(m, b, &subsegloop);
+      checkseg4encroach(m, b, &subsegloop);
       subsegloop.ss = subsegtraverse(m);
     }
 }
@@ -14454,7 +14452,6 @@ int triflaws;
   REAL split;
   REAL multiplier, divisor;
   int acuteorg, acuteorg2, acutedest, acutedest2;
-  int dummy;
   int i;
   triangle ptr;                     /* Temporary variable used by stpivot(). */
   subseg sptr;                        /* Temporary variable used by snext(). */
@@ -14645,9 +14642,9 @@ int triflaws;
                   m->steinerleft--;
                 }
               /* Check the two new subsegments to see if they're encroached. */
-              dummy = checkseg4encroach(m, b, &currentenc);
+              checkseg4encroach(m, b, &currentenc);
               snextself(currentenc);
-              dummy = checkseg4encroach(m, b, &currentenc);
+              checkseg4encroach(m, b, &currentenc);
             }
 
           badsubsegdealloc(m, encloop);
