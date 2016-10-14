@@ -32,8 +32,8 @@ namespace tracker
 class CrossEntropyParameters
 {
 public:
-  CrossEntropyParameters(int min_s, int max_s, int add_s, int elite_s, int iter, float term) : min_samples(min_s),
-    max_samples(max_s), add_samples(add_s), elite_samples(elite_s), iterations(iter), terminate(term) {};
+  CrossEntropyParameters(int min_s, int max_s, int add_s, int elite_s, int iter, float term) : max_samples(max_s),
+    min_samples(min_s), add_samples(add_s), elite_samples(elite_s), iterations(iter), terminate(term) {};
 
   int max_samples;
   int min_samples;

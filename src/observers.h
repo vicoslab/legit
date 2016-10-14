@@ -81,7 +81,7 @@ typedef struct
 class TimeStage
 {
 public:
-  TimeStage(string name, int id) : name(name), id(id) {};
+  TimeStage(string name, int id) : id(id), name(name) {};
   ~TimeStage() {};
 
   int id;

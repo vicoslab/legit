@@ -40,8 +40,6 @@ int compare_cost_pair (const void* i, const void* j)
 }
 
 LGTTracker::LGTTracker(Config& config, string inst) :
-  patches(6, 30),
-  modalities(config),
   verbosity(config.read<int>("tracker.verbosity", 0)),
   probability_size(config.read<int>("sampling.size")),
   global_optimization(
@@ -58,7 +56,9 @@ LGTTracker::LGTTracker(Config& config, string inst) :
     config.read<int>("optimization.local.elite", 5),
     config.read<int>("optimization.local.iterations", 10),
     config.read<float>("optimizationl.local.terminate", 0.001)),
-  motion(4, 2, 0)
+  motion(4, 2, 0),
+  patches(6, 30),
+  modalities(config)
 {
 
   instance = inst;

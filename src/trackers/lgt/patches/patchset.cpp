@@ -72,7 +72,7 @@ void Patch::push()
 
 }
 
-PatchSet::PatchSet(int size) : psize(size), patches()
+PatchSet::PatchSet(int size) : patches(), psize(size)
 {
 
 }

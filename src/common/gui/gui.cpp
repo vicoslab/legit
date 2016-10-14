@@ -303,7 +303,7 @@ Canvas* get_canvas(const string id)
 #define __PANELMARGIN 10
 #define __BUTTONMARGIN 5
 
-Menu::Menu(vector<string> ch, void (*cb)(int)) : menuSize(0, 0), buttonSize(0, 0), selected(0)
+Menu::Menu(vector<string> ch, void (*cb)(int)) : selected(0), menuSize(0, 0), buttonSize(0, 0)
 {
 
   foreground = Scalar(255,255,255);

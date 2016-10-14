@@ -38,7 +38,7 @@ bool __random_init = false;
 class LegitTracker::Impl
 {
 public:
-  Impl() : image(), initialized(false), tracker(NULL)
+  Impl() : tracker(NULL), image(), initialized(false)
   {
 
     if (!__random_init)
