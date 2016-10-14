@@ -231,6 +231,7 @@ bool ImageFileListSequence::load_list()
       frm.release();
     }
 
+  return true;
 }
 
 bool ImageFileListSequence::read_frame(Mat& img)
