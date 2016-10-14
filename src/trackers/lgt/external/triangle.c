@@ -9908,6 +9908,11 @@ int arraysize;
   REAL pivotx, pivoty;
   vertex temp;
 
+  if (arraysize < 2)
+    {
+        return;
+    }
+
   if (arraysize == 2)
     {
       /* Recursive base case. */
