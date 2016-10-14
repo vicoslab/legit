@@ -284,7 +284,7 @@ inline bool isnan_matrix(Matrix2f m)
   return isnan(m.m00) || isnan(m.m10) || isnan(m.m01) || isnan(m.m11);
 }
 
-inline bool set_identity(Matrix3f& m)
+inline void set_identity(Matrix3f& m)
 {
   m.m00 = 1;
   m.m10 = 0;
