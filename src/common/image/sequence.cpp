@@ -339,7 +339,7 @@ bool FileListSequence::load_list()
 
   read_listing(sequence_listing);
 
-  ImageFileListSequence::load_list();
+  return ImageFileListSequence::load_list();
 
 }
 
@@ -369,6 +369,7 @@ bool FileListSequence::read_listing(const string listing)
     }
   else throw LegitException("Unable to read file");
 
+  return true;
 }
 
 ImageDirectorySequence::ImageDirectorySequence(const char* directory, int start, int end) : ImageFileListSequence(), sequence_source(directory)
@@ -404,7 +405,7 @@ bool ImageDirectorySequence::load_list()
 
   scan_directory(sequence_source);
 
-  ImageFileListSequence::load_list();
+  return ImageFileListSequence::load_list();
 
 }
 
