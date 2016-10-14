@@ -312,7 +312,7 @@ void ImageFileListSequence::list_files()
 
 }
 
-FileListSequence::FileListSequence(const char* listing) : sequence_listing(listing), ImageFileListSequence()
+FileListSequence::FileListSequence(const char* listing) : ImageFileListSequence(), sequence_listing(listing)
 {
 
   load_list();
@@ -371,7 +371,7 @@ bool FileListSequence::read_listing(const string listing)
 
 }
 
-ImageDirectorySequence::ImageDirectorySequence(const char* directory, int start, int end) : sequence_source(directory), ImageFileListSequence()
+ImageDirectorySequence::ImageDirectorySequence(const char* directory, int start, int end) : ImageFileListSequence(), sequence_source(directory)
 {
 
   scan_directory(string(directory));
