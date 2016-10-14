@@ -526,8 +526,8 @@ ClfAdaBoost::update(SampleSet &posx, SampleSet &negx)
         }
 
       // pick the best weak clf and udpate _selectors and _selectedFtrs
-      float minerr;
-      uint bestind;
+      float minerr = 0;
+      uint bestind = 0;
 
       sort_order_des(errs, order);
 
