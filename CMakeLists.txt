@@ -7,6 +7,15 @@ SET(CMAKE_MODULE_PATH ${PROJECT_ROOT}/cmake)
 INCLUDE(LegitUtilities REQUIRED)
 INCLUDE(PlatformUtilities REQUIRED)
 
+# Enable warnings for gcc
+if(CMAKE_COMPILER_IS_GNUCXX)
+    add_definitions(-Wall -Wextra)
+    add_definitions(-Wno-unused-parameter)
+    add_definitions(-Wno-deprecated-declarations)
+    add_definitions(-Wno-strict-aliasing)
+    add_definitions(-Wno-sign-compare)
+endif()
+
 ADD_DEFINITIONS(-DSOURCE_COMPILE_ROOT="${PROJECT_ROOT}/src/")
 
 SET(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_BINARY_DIR})
