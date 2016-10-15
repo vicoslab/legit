@@ -55,7 +55,7 @@ public:
 
   Sequence() {};
 
-  ~Sequence() {};
+  virtual ~Sequence() {};
 
   virtual bool read_frame(Mat& img) = 0;
 
@@ -85,7 +85,7 @@ public:
 
   VideoFileSequence(const char* file, int start=-1, int end=-1);
 
-  ~VideoFileSequence();
+  virtual ~VideoFileSequence();
 
   virtual bool read_frame(Mat& img);
 
@@ -131,7 +131,7 @@ public:
 
   CameraSequence(int camera);
 
-  ~CameraSequence();
+  virtual ~CameraSequence();
 
   virtual bool read_frame(Mat& img);
 
@@ -164,7 +164,7 @@ public:
 
   ImageFileListSequence();
 
-  ~ImageFileListSequence();
+  virtual ~ImageFileListSequence();
 
   virtual bool read_frame(Mat& img);
 
@@ -210,7 +210,7 @@ public:
 
   FileListSequence(const char* listing);
 
-  ~FileListSequence();
+  virtual ~FileListSequence();
 
   const char* get_listing();
 
@@ -229,7 +229,7 @@ public:
 
   ImageDirectorySequence(const char* directory, int start=-1, int end=-1);
 
-  ~ImageDirectorySequence();
+  virtual ~ImageDirectorySequence();
 
   const char* get_directory();
 

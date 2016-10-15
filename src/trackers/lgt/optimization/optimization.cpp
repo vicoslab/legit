@@ -210,6 +210,10 @@ DelaunayConstraints::DelaunayConstraints(PatchSet& patches)
 
 }
 
+DelaunayConstraints::~DelaunayConstraints()
+{
+}
+
 float DelaunayConstraints::constraint(int i, int j)
 {
 
