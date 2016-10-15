@@ -41,8 +41,8 @@ public:
   ~HistogramPatch();
 
   virtual void initialize(Image& image, cv::Point position);
-  virtual inline float response(Image& image, cv::Point position);
-  virtual inline void responses(Image& image, cv::Point2f* positions, int pcount, float* responses);
+  virtual float response(Image& image, cv::Point position);
+  virtual void responses(Image& image, cv::Point2f* positions, int pcount, float* responses);
   virtual PatchType get_type()
   {
     return HISTOGRAM;
@@ -65,8 +65,8 @@ public:
   ~RGBPatch();
 
   virtual void initialize(Image& image, cv::Point position);
-  virtual inline float response(Image& image, cv::Point position);
-  virtual inline void responses(Image& image, cv::Point2f* positions, int pcount, float* responses);
+  virtual float response(Image& image, cv::Point position);
+  virtual void responses(Image& image, cv::Point2f* positions, int pcount, float* responses);
   virtual PatchType get_type()
   {
     return RGBPIXEL;
@@ -83,8 +83,8 @@ public:
   ~HSPatch();
 
   virtual void initialize(Image& image, cv::Point position);
-  virtual inline float response(Image& image, cv::Point position);
-  virtual inline void responses(Image& image, cv::Point2f* positions, int pcount, float* responses);
+  virtual float response(Image& image, cv::Point position);
+  virtual void responses(Image& image, cv::Point2f* positions, int pcount, float* responses);
   virtual PatchType get_type()
   {
     return HSPIXEL;
@@ -102,8 +102,8 @@ public:
   ~SSDPatch() {}
 
   virtual void initialize(Image& image, cv::Point position);
-  virtual inline float response(Image& image, cv::Point position);
-  virtual inline void responses(Image& image, Point2f* positions, int pcount, float* responses);
+  virtual float response(Image& image, cv::Point position);
+  virtual void responses(Image& image, Point2f* positions, int pcount, float* responses);
 
   virtual PatchType get_type()
   {
