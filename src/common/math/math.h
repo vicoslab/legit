@@ -37,19 +37,8 @@
 #include <stdint.h>
 #endif
 
-#ifdef BUILD_FAST_MATH
-
-#include "common/math/fastmath.h"
-
-#define SQRT(X) sqrt(X)
-#define SQRT_INV(X) am_finvsqrt(X)
-
-#else
-
 #define SQRT(X) sqrt(X)
 #define SQRT_INV(X) (1.0 / sqrt(X))
-
-#endif
 
 #ifndef MAX
 #define MAX(a,b) ((a) > (b)) ? (a) : (b)
