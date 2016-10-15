@@ -14,6 +14,11 @@ if(CMAKE_COMPILER_IS_GNUCXX)
     add_definitions(-Wno-deprecated-declarations)
 endif()
 
+if(MSVC)
+  add_definitions(/MP) # Build with multiple processes
+  add_definitions(/wd4244 /wd4267 /wd4018 /wd4355 /wd4800 /wd4251 /wd4996 /wd4146 /wd4305) # Ignore some of the warnings
+endif()
+
 ADD_DEFINITIONS(-DSOURCE_COMPILE_ROOT="${PROJECT_ROOT}/src/")
 
 SET(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_BINARY_DIR})
