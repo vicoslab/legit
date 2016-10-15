@@ -34,6 +34,8 @@
 #define FILETYPE_DIRECTORY 2
 #define FILETYPE_OTHER 100
 
+#include "common/export.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -45,6 +47,6 @@
 #endif
 
 
-int read_file(const char* filename, char** buffer);
+__LEGIT_EXPORT int read_file(const char* filename, char** buffer);
 
 #endif

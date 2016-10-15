@@ -30,6 +30,8 @@
 #ifndef LEGIT_CANVAS
 #define LEGIT_CANVAS
 
+#include "common/export.h"
+
 #include <stdio.h>
 #include <string.h>
 #include <exception>
@@ -50,11 +52,11 @@ namespace legit
 namespace common
 {
 
-void drawcross(Mat& image, cv::Point center, Scalar color, int size = 3, bool sideways = false);
+__LEGIT_EXPORT void drawcross(Mat& image, cv::Point center, Scalar color, int size = 3, bool sideways = false);
 
-void drawellipse(Mat& image, cv::Point center, Matrix2f covariance, Scalar color, int width=1);
+__LEGIT_EXPORT void drawellipse(Mat& image, cv::Point center, Matrix2f covariance, Scalar color, int width=1);
 
-class Canvas
+class __LEGIT_EXPORT Canvas
 {
 public:
 
@@ -105,7 +107,7 @@ public:
 
 };
 
-class ProxyCanvas : public Canvas
+class __LEGIT_EXPORT ProxyCanvas : public Canvas
 {
 public:
 
@@ -164,7 +166,7 @@ private:
 };
 
 
-class ImageCanvas : public Canvas
+class __LEGIT_EXPORT ImageCanvas : public Canvas
 {
 public:
 
@@ -217,7 +219,7 @@ protected:
   float zoom;
 };
 
-class VideoCanvas : public ImageCanvas
+class __LEGIT_EXPORT VideoCanvas : public ImageCanvas
 {
 public:
 
@@ -234,7 +236,7 @@ protected:
   Ptr<VideoWriter> writer;
 };
 
-void canvas_draw_transformed_rectangle(Canvas& canvas, cv::Rect rectangle, Matrix3f transform, Scalar color, int width=1);
+__LEGIT_EXPORT void canvas_draw_transformed_rectangle(Canvas& canvas, cv::Rect rectangle, Matrix3f transform, Scalar color, int width=1);
 
 
 }

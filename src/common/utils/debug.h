@@ -30,6 +30,8 @@
 #ifndef _DEBUG_H
 #define _DEBUG_H
 
+#include "common/export.h"
+
 #include <string>
 #include <stdio.h>
 #include <assert.h>
@@ -54,23 +56,23 @@ using namespace std;
 
 #endif
 
-void __debug_enable();
+__LEGIT_EXPORT void __debug_enable();
 
-void __debug_disable();
+__LEGIT_EXPORT void __debug_disable();
 
-int __is_debug_enabled();
+__LEGIT_EXPORT int __is_debug_enabled();
 
-void __debug_set_target(FILE* stream);
+__LEGIT_EXPORT void __debug_set_target(FILE* stream);
 
-FILE* __debug_get_target();
+__LEGIT_EXPORT FILE* __debug_get_target();
 
-const char* __short_file_name(const char* filename);
+__LEGIT_EXPORT const char* __short_file_name(const char* filename);
 
-void tic();
+__LEGIT_EXPORT void tic();
 
-void toc();
+__LEGIT_EXPORT void toc();
 
-class DebugOutput
+class __LEGIT_EXPORT DebugOutput
 {
 public:
   DebugOutput(string dir);

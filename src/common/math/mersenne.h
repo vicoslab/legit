@@ -28,6 +28,8 @@
 #ifndef mersenne_normal_twister_H
 #define mersenne_normal_twister_H
 
+#include "common/export.h"
+
 //typedef unsigned long   uint32;
 
 #ifdef PLATFORM_WINDOWS
@@ -82,10 +84,10 @@ void tinymt32_init_by_array(tinymt32_t * random, uint32_t init_key[],
                             int key_length);
 
 
-float random_MT_uniform ( void ) ;
-void set_seedMT ( uint32 seed ) ;
-void initializeMTwister ( void ) ;
-double random_MT_normal() ;
+__LEGIT_EXPORT float random_MT_uniform ( void ) ;
+__LEGIT_EXPORT void set_seedMT ( uint32 seed ) ;
+__LEGIT_EXPORT void initializeMTwister ( void ) ;
+__LEGIT_EXPORT double random_MT_normal() ;
 
 
 #if defined(__GNUC__)

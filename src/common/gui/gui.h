@@ -30,6 +30,8 @@
 #ifndef GUI_H
 #define GUI_H
 
+#include "common/export.h"
+
 #include <stdio.h>
 #include <string.h>
 #include <sstream>
@@ -67,21 +69,21 @@ typedef struct
   float zoom;
 } CanvasDescription;
 
-void initialize_canvases();
+__LEGIT_EXPORT void initialize_canvases();
 
-void initialize_canvases(Config& config);
+__LEGIT_EXPORT void initialize_canvases(Config& config);
 
-void initialize_canvases(vector<CanvasDescription> channels);
+__LEGIT_EXPORT void initialize_canvases(vector<CanvasDescription> channels);
 
-Canvas* get_canvas(const string id);
+__LEGIT_EXPORT Canvas* get_canvas(const string id);
 
-void enable_gui();
+__LEGIT_EXPORT void enable_gui();
 
-bool is_gui_enabled();
+__LEGIT_EXPORT bool is_gui_enabled();
 
-void showimage(Mat& image, string title = "Image", bool halt = true); //TODO: move to gui.h
+__LEGIT_EXPORT void showimage(Mat& image, string title = "Image", bool halt = true); //TODO: move to gui.h
 
-bool queryrect(string name, cv::Rect& rect); //TODO: move to gui.h
+__LEGIT_EXPORT bool queryrect(string name, cv::Rect& rect); //TODO: move to gui.h
 
 class Widget
 {

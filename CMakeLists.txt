@@ -75,11 +75,10 @@ set_property(SOURCE src/tracker.cpp APPEND PROPERTY OBJECT_DEPENDS "${BUILD_ROOT
 ADD_SUBDIRECTORY(src/api/)
 
 
+ADD_LIBRARY(legit_static STATIC ${LEGIT_SOURCES})
+ADD_LIBRARY(legit SHARED ${LEGIT_SOURCES})
 
-ADD_LIBRARY(legit_objects OBJECT ${LEGIT_SOURCES})
-ADD_LIBRARY(legit_static STATIC $<TARGET_OBJECTS:legit_objects>)
-ADD_LIBRARY(legit SHARED $<TARGET_OBJECTS:legit_objects>)
-
+TARGET_COMPILE_OPTIONS(legit_static PUBLIC -DLEGIT_STATIC_DEFINE)
 
 SET(BUILD_TRAX FALSE CACHE BOOL "Enable TraX protocol support (requires libtrax)")
 

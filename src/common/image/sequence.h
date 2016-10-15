@@ -30,6 +30,8 @@
 #ifndef LEGIT_SEQUENCE
 #define LEGIT_SEQUENCE
 
+#include "common/export.h"
+
 #include <stdio.h>
 #include <string.h>
 #include <exception>
@@ -49,7 +51,7 @@ namespace common
 {
 
 
-class Sequence
+class __LEGIT_EXPORT Sequence
 {
 public:
 
@@ -79,7 +81,7 @@ public:
 };
 
 
-class VideoFileSequence : public Sequence
+class __LEGIT_EXPORT VideoFileSequence : public Sequence
 {
 public:
 
@@ -125,7 +127,7 @@ protected:
 
 };
 
-class CameraSequence : public Sequence
+class __LEGIT_EXPORT CameraSequence : public Sequence
 {
 public:
 
@@ -158,7 +160,7 @@ protected:
 
 };
 
-class ImageFileListSequence : public Sequence
+class __LEGIT_EXPORT ImageFileListSequence : public Sequence
 {
 public:
 
@@ -204,7 +206,7 @@ protected:
 };
 
 
-class FileListSequence : public ImageFileListSequence
+class __LEGIT_EXPORT FileListSequence : public ImageFileListSequence
 {
 public:
 
@@ -223,7 +225,7 @@ protected:
   virtual bool load_list();
 };
 
-class ImageDirectorySequence : public ImageFileListSequence
+class __LEGIT_EXPORT  ImageDirectorySequence : public ImageFileListSequence
 {
 public:
 
@@ -244,7 +246,7 @@ protected:
   virtual bool load_list();
 };
 
-Sequence* open_sequence(const char* name);
+__LEGIT_EXPORT Sequence* open_sequence(const char* name);
 
 
 }

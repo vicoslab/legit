@@ -30,6 +30,7 @@
 #ifndef _LEGIT_IMAGE_H
 #define _LEGIT_IMAGE_H
 
+#include "common/export.h"
 #include "common/utils/utils.h"
 #include "common/image/sequence.h"
 #include "common/image/integral.h"
@@ -46,7 +47,7 @@ namespace legit
 namespace common
 {
 
-class Image
+class __LEGIT_EXPORT Image
 {
 public:
   Image();

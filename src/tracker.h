@@ -30,15 +30,17 @@
 #ifndef LEGIT_TRACKER
 #define LEGIT_TRACKER
 
+#include "common/export.h"
+
 namespace legit
 {
 
 namespace tracker
 {
 
-class Tracker;
+class __LEGIT_EXPORT Tracker;
 
-class TrackerFactory;
+class __LEGIT_EXPORT TrackerFactory;
 
 }
 
@@ -61,7 +63,7 @@ namespace legit
 namespace tracker
 {
 
-class Tracker
+class __LEGIT_EXPORT Tracker
 {
 
 public:
@@ -104,7 +106,7 @@ private:
 
 };
 
-class ProxyTracker : public Tracker
+class __LEGIT_EXPORT ProxyTracker : public Tracker
 {
 
 public:
@@ -195,13 +197,13 @@ private:
   RegistryEntry& operator=(const RegistryEntry<T>&) = delete;
 };
 
-Tracker* create_tracker(string type, Config& config, string id);
+__LEGIT_EXPORT Tracker* create_tracker(string type, Config& config, string id);
 
-vector<string> list_builtin_configs();
+__LEGIT_EXPORT vector<string> list_builtin_configs();
 
-vector<string> list_registered_trackers();
+__LEGIT_EXPORT vector<string> list_registered_trackers();
 
-void read_builtin_config(string name, Config& config);
+__LEGIT_EXPORT void read_builtin_config(string name, Config& config);
 
 }
 

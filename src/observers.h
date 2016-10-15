@@ -30,6 +30,8 @@
 #ifndef LEGIT_OBSERVERS
 #define LEGIT_OBSERVERS
 
+#include "common/export.h"
+
 #include <string>
 #include <stdio.h>
 #include <stdlib.h>
@@ -68,7 +70,7 @@ namespace legit
 namespace tracker
 {
 
-class Observer;
+class __LEGIT_EXPORT Observer;
 
 typedef struct
 {
@@ -78,7 +80,7 @@ typedef struct
 
 }
 
-class TimeStage
+class __LEGIT_EXPORT TimeStage
 {
 public:
   TimeStage(string name, int id) : id(id), name(name) {};
@@ -99,7 +101,7 @@ namespace legit
 namespace tracker
 {
 
-class Observer
+class __LEGIT_EXPORT Observer
 {
 public:
   Observer() {};
@@ -107,7 +109,7 @@ public:
   virtual void notify(Tracker* tracker, int channel, void* data, int flags) = 0;
 };
 
-class PerformanceObserver : public Observer
+class __LEGIT_EXPORT PerformanceObserver : public Observer
 {
 public:
   PerformanceObserver(vector<TimeStage> stages);
