@@ -31,12 +31,9 @@
 #include <string.h>
 #include <sstream>
 #include <exception>
+#include "../filesystem.h"
+#include "filesystem.h"
 
-namespace legit
-{
-
-namespace common
-{
 
 int file_type(const char* filename)
 {
@@ -73,9 +70,5 @@ string path_parent(string path)
     {
       return path.substr(0, loc);
     }
-
-}
-
-}
 
 }

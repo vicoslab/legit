@@ -29,6 +29,10 @@
 #ifndef __PLATFORM_FILESYSTEM_WINDOWS_H
 #define __PLATFORM_FILESYSTEM_WINDOWS_H
 
+#include <string>
+
+using namespace std;
+
 #define FILE_DELIMITER '\\'
 #define FILE_DELIMITER_STR "\\"
 
