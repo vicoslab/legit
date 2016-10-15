@@ -31,7 +31,7 @@
 //typedef unsigned long   uint32;
 
 #ifdef PLATFORM_WINDOWS
-#include "external/platform/stdint_win.h"
+#include "common/platform/windows/stdint_win.h"
 
 #ifndef UINT32_C
 #define UINT32_C(val) val##ui32
