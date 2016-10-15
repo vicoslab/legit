@@ -800,7 +800,7 @@ void cross_entropy_local_refine(Image& image, PatchSet& patches, Constraints& co
               affine_to.clear();
               affine_weights.clear();
 
-              for (int n = 0; n < neighborhoods[p].size(); n++)
+              for (size_t n = 0; n < neighborhoods[p].size(); n++)
                 {
                   affine_from.push_back(positions[neighborhoods[p][n].index]);
                   affine_to.push_back(localM[neighborhoods[p][n].index]);
@@ -883,7 +883,7 @@ void cross_entropy_local_refine(Image& image, PatchSet& patches, Constraints& co
               debug->draw(gray);
 
               Point2f p1 = localM[p];
-              for (int n = 0; n < neighborhoods[p].size(); n++)
+              for (size_t n = 0; n < neighborhoods[p].size(); n++)
                 {
                   Point2f p2 = localM[neighborhoods[p][n].index];
                   debug->line(p1, p2, COLOR_RED);

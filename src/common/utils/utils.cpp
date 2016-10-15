@@ -154,10 +154,10 @@ void read_csv(Mat& mat, const char* file, char delimiter)
 
   mat.create(data.size(), cols, CV_32F);
 
-  for (int j = 0; j < data.size(); j++)
+  for (size_t j = 0; j < data.size(); j++)
     {
 
-      for (int i = 0; i < data[j].size(); i++)
+      for (size_t i = 0; i < data[j].size(); i++)
         {
           mat.at<float>(j, i) = data[j][i];
         }

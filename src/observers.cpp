@@ -61,7 +61,7 @@ void PerformanceObserver::notify(Tracker* tracker, int channel, void* data, int 
     case STAGE_BEGIN:
     {
       vector<long> frame;
-      for (int i = 0; i < stages.size(); i++)
+      for (size_t i = 0; i < stages.size(); i++)
         frame.push_back(0);
       frames.push_back(frame);
       time = clock();
@@ -72,7 +72,7 @@ void PerformanceObserver::notify(Tracker* tracker, int channel, void* data, int 
       if (previous_stage > -1)
         frames[frames.size()-1][previous_stage] = (current_time - time) + 1;
 
-      for (int i = 0; i < stages.size(); i++)
+      for (size_t i = 0; i < stages.size(); i++)
         {
           if (stage == stages[i].id)
             {
@@ -98,17 +98,17 @@ void PerformanceObserver::print()
   long total = 0;
 
   vector<long> average;
-  for (int i = 0; i < stages.size(); i++)
+  for (size_t i = 0; i < stages.size(); i++)
     {
       average.push_back(0);
     }
 
-  for (int j = 0; j < frames.size(); j++)
+  for (size_t j = 0; j < frames.size(); j++)
     {
 
       vector<long> frame = frames[j];
 
-      for (int i = 0; i < stages.size(); i++)
+      for (size_t i = 0; i < stages.size(); i++)
         {
           average[i] += frame[i];
           total += frame[i];
@@ -117,7 +117,7 @@ void PerformanceObserver::print()
 
   printf("Performance summary for %d frames: \n\n", (int)frames.size());
 
-  for (int i = 0; i < stages.size(); i++)
+  for (size_t i = 0; i < stages.size(); i++)
     {
       printf("\t* %s\t%ldms \n", stages[i].name.c_str(), ((average[i]) / (CLOCKS_PER_MILISEC * frames.size())));
     }

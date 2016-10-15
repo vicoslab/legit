@@ -751,7 +751,7 @@ vector<cv::Point> LGTTracker::get_patch_positions()
 void  LGTTracker::notify_observers(int channel, void* data, int flags)
 {
 
-  for (int i = 0; i < observers.size(); i++)
+  for (size_t i = 0; i < observers.size(); i++)
     {
       observers[i]->notify(this, channel, data, flags);
     }
@@ -781,7 +781,7 @@ bool LGTTracker::is_tracking()
 void LGTTracker::notify_stage(int stage)
 {
 
-  for (int i = 0; i < observers.size(); i++)
+  for (size_t i = 0; i < observers.size(); i++)
     {
       int s = stage;
       observers[i]->notify(this, OBSERVER_CHANNEL_MAIN, &s, 0);

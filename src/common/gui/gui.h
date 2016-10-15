@@ -108,7 +108,7 @@ public:
 
 private:
 
-  int selected;
+  unsigned int selected;
 
   vector<string> choices;
 

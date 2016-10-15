@@ -164,7 +164,7 @@ void print_help()
     {
       cout << "\nList of available trackers:\n";
 
-      for (int i = 0; i < tracker_list.size(); i++)
+      for (size_t i = 0; i < tracker_list.size(); i++)
         {
 
           cout << "\t" << tracker_list[i] << "\n";
@@ -177,7 +177,7 @@ void print_help()
     {
       cout << "\nList of available built-in configurations:\n";
 
-      for (int i = 0; i < config_list.size(); i++)
+      for (size_t i = 0; i < config_list.size(); i++)
         {
 
           cout << "\t" << config_list[i] << "\n";
@@ -448,7 +448,7 @@ int main( int argc, char** argv)
 
   if (configString)
     {
-      for (int i = 0; i < strlen(configString); i++)
+      for (size_t i = 0; i < strlen(configString); i++)
         {
           if (configString[i] == ';') configString[i] = '\n';
         }
@@ -460,7 +460,7 @@ int main( int argc, char** argv)
   {
 
     vector<string> configKeys = config.keys();
-    for (int i = 0; i < configKeys.size(); i++)
+    for (size_t i = 0; i < configKeys.size(); i++)
       {
         string value = config.read<string>(configKeys[i]);
         DEBUGMSG("Config dump: %s = %s\n", configKeys[i].c_str(), value.c_str());

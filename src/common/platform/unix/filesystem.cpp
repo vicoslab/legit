@@ -70,7 +70,7 @@ string path_parent(string path)
   if (path.size() < 2)
     return path;
 
-  int loc = path.rfind('/', (path[path.size()-1] == '/') ? path.size()-2 : string::npos);
+  string::size_type loc = path.rfind('/', (path[path.size()-1] == '/') ? path.size()-2 : string::npos);
 
   if (loc == string::npos)
     {

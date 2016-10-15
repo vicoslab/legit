@@ -134,7 +134,7 @@ void ModalityMotionLK::update(Image& image, PatchSet* patchSet, Rect bounds)
       }
   */
   goodFeaturesToTrack(grayscale(roi), points, 150, 0.05, 8, Mat(), block_size);
-  for (int i = 0; i < points.size(); i++)
+  for (size_t i = 0; i < points.size(); i++)
     points[i] += offset;
 
   TermCriteria termination =
@@ -170,7 +170,7 @@ void ModalityMotionLK::update(Image& image, PatchSet* patchSet, Rect bounds)
   //Point2f referenceMotion = motion.get(step-1) -  motion.get(0);
   Point2f referenceMotion = motion.get(0);
 
-  for (int i = 0; i < points.size(); i++)
+  for (size_t i = 0; i < points.size(); i++)
     {
       if (!status[i]) continue;
 

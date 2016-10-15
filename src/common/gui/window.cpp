@@ -141,7 +141,7 @@ void ImageWindow::grid(int rows, int columns, int width, int height)
 {
   int c = 0, r = 0;
 
-  for (int i = 0; i < windows.size(); i++)
+  for (size_t i = 0; i < windows.size(); i++)
     {
 
       moveWindow(windows[i]->title.c_str(), c * width, r * height);

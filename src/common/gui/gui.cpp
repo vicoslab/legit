@@ -182,7 +182,7 @@ void initialize_canvases(Config& config)
 void initialize_canvases(vector<CanvasDescription> descriptions)
 {
 
-  for (int i = 0; i < descriptions.size(); i++)
+  for (size_t i = 0; i < descriptions.size(); i++)
     {
       Canvas* canvas = NULL;
       switch(descriptions[i].type)
@@ -309,7 +309,7 @@ Menu::Menu(vector<string> ch, void (*cb)(int)) : selected(0), menuSize(0, 0), bu
   foreground = Scalar(255,255,255);
   background = Scalar(0,0,0);
 
-  for (int i = 0; i < ch.size(); i++)
+  for (size_t i = 0; i < ch.size(); i++)
     {
       int baseline = 0;
       Size sz = getTextSize(ch[i].c_str(), FONT_HERSHEY_SIMPLEX, 0.4, 1, &baseline);
@@ -342,7 +342,7 @@ void Menu::draw(Ptr<Canvas> window)
 
   Point buttonOffset = offset + __PANELMARGIN;
 
-  for (int i = 0; i < choices.size(); i++)
+  for (size_t i = 0; i < choices.size(); i++)
     {
 //      int baseline = 0;
 //      Size sz = getTextSize(choices[i].c_str(), FONT_HERSHEY_SIMPLEX, 0.4, 1, &baseline);

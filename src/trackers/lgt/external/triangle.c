@@ -4067,7 +4067,7 @@ int alignment;
   /*   - The parameter `alignment'.                                   */
   /*   - sizeof(VOID *), so the stack of dead items can be maintained */
   /*       without unaligned accesses.                                */
-  if (alignment > sizeof(VOID *))
+  if (alignment > (int)sizeof(VOID *))
     {
       pool->alignbytes = alignment;
     }
@@ -4485,10 +4485,11 @@ struct behavior *b;
   /*   sure there's room to store an integer index in each triangle.  This */
   /*   integer index can occupy the same space as the subsegment pointers  */
   /*   or attributes or area constraint or extra nodes.                    */
+  int min_size = 6 * sizeof(triangle) + sizeof(int);
   if ((b->voronoi || b->neighbors) &&
-      (trisize < 6 * sizeof(triangle) + sizeof(int)))
+      (trisize < min_size))
     {
-      trisize = 6 * sizeof(triangle) + sizeof(int);
+      trisize = min_size;
     }
 
   /* Having determined the memory size of a triangle, initialize the pool. */
