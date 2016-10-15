@@ -27,8 +27,6 @@
 *******************************************************************************/
 /* -*- Mode: C++; indent-tabs-mode: nil; c-basic-offset: 4; tab-width: 4 -*- */
 
-#include <unistd.h>
-
 #include "tracker.h"
 #include "common/utils/defs.h"
 #include "common/utils/string.h"
@@ -38,11 +36,13 @@
 
 #ifdef PLATFORM_WINDOWS
 #include <windows.h>
-#include "external/platform/getopt_win.h"
+#include "common/platform/windows/getopt_win.h"
 inline void sleep(long time)
 {
   Sleep(time);
 }
+#else
+#include <unistd.h>
 #endif
 
 #ifdef BUILD_TRAX
