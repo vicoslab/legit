@@ -4067,7 +4067,7 @@ int alignment;
   /*   - The parameter `alignment'.                                   */
   /*   - sizeof(VOID *), so the stack of dead items can be maintained */
   /*       without unaligned accesses.                                */
-  if (alignment > sizeof(VOID *))
+  if (alignment > (int)sizeof(VOID *))
     {
       pool->alignbytes = alignment;
     }
@@ -4485,10 +4485,11 @@ struct behavior *b;
   /*   sure there's room to store an integer index in each triangle.  This */
   /*   integer index can occupy the same space as the subsegment pointers  */
   /*   or attributes or area constraint or extra nodes.                    */
+  int min_size = 6 * sizeof(triangle) + sizeof(int);
   if ((b->voronoi || b->neighbors) &&
-      (trisize < 6 * sizeof(triangle) + sizeof(int)))
+      (trisize < min_size))
     {
-      trisize = 6 * sizeof(triangle) + sizeof(int);
+      trisize = min_size;
     }
 
   /* Having determined the memory size of a triangle, initialize the pool. */
@@ -5561,7 +5562,7 @@ REAL permanent;
   REAL cxtaa[8], cxtbb[8], cytaa[8], cytbb[8];
   int cxtaalen, cxtbblen, cytaalen, cytbblen;
   REAL axtbc[8], aytbc[8], bxtca[8], bytca[8], cxtab[8], cytab[8];
-  int axtbclen, aytbclen, bxtcalen, bytcalen, cxtablen, cytablen;
+  int axtbclen = 0, aytbclen = 0, bxtcalen = 0, bytcalen = 0, cxtablen = 0, cytablen = 0;
   REAL axtbct[16], aytbct[16], bxtcat[16], bytcat[16], cxtabt[16], cytabt[16];
   int axtbctlen, aytbctlen, bxtcatlen, bytcatlen, cxtabtlen, cytabtlen;
   REAL axtbctt[8], aytbctt[8], bxtcatt[8];
@@ -9908,6 +9909,11 @@ int arraysize;
   REAL pivotx, pivoty;
   vertex temp;
 
+  if (arraysize < 2)
+    {
+        return;
+    }
+
   if (arraysize == 2)
     {
       /* Recursive base case. */
@@ -12702,7 +12708,6 @@ vertex endpoint2;
   vertex leftvertex, rightvertex;
   vertex newvertex;
   enum insertvertexresult success;
-  enum finddirectionresult collinear;
   REAL ex, ey;
   REAL tx, ty;
   REAL etx, ety;
@@ -12780,7 +12785,7 @@ vertex endpoint2;
 
   /* Inserting the vertex may have caused edge flips.  We wish to rediscover */
   /*   the edge connecting endpoint1 to the new intersection vertex.         */
-  collinear = finddirection(m, b, splittri, endpoint1);
+  finddirection(m, b, splittri, endpoint1);
   dest(*splittri, rightvertex);
   apex(*splittri, leftvertex);
   if ((leftvertex[0] == endpoint1[0]) && (leftvertex[1] == endpoint1[1]))
@@ -14380,7 +14385,6 @@ struct behavior *b;
 
 {
   struct osub subsegloop;
-  int dummy;
 
   traversalinit(&m->subsegs);
   subsegloop.ssorient = 0;
@@ -14388,7 +14392,7 @@ struct behavior *b;
   while (subsegloop.ss != (subseg *) NULL)
     {
       /* If the segment is encroached, add it to the list. */
-      dummy = checkseg4encroach(m, b, &subsegloop);
+      checkseg4encroach(m, b, &subsegloop);
       subsegloop.ss = subsegtraverse(m);
     }
 }
@@ -14454,7 +14458,6 @@ int triflaws;
   REAL split;
   REAL multiplier, divisor;
   int acuteorg, acuteorg2, acutedest, acutedest2;
-  int dummy;
   int i;
   triangle ptr;                     /* Temporary variable used by stpivot(). */
   subseg sptr;                        /* Temporary variable used by snext(). */
@@ -14645,9 +14648,9 @@ int triflaws;
                   m->steinerleft--;
                 }
               /* Check the two new subsegments to see if they're encroached. */
-              dummy = checkseg4encroach(m, b, &currentenc);
+              checkseg4encroach(m, b, &currentenc);
               snextself(currentenc);
-              dummy = checkseg4encroach(m, b, &currentenc);
+              checkseg4encroach(m, b, &currentenc);
             }
 
           badsubsegdealloc(m, encloop);

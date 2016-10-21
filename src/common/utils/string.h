@@ -28,16 +28,18 @@
 #ifndef _COMMON_STRING_H
 #define _COMMON_STRING_H
 
+#include "common/export.h"
+
 #include <string>
 
 using namespace std;
 
-bool matches_suffix(const char* str, const char* suffix);
+__LEGIT_EXPORT bool matches_suffix(const char* str, const char* suffix);
 
-bool matches_prefix(const char* str, const char* prefix);
+__LEGIT_EXPORT bool matches_prefix(const char* str, const char* prefix);
 
-bool matches_suffix(const string str, const string suffix);
+__LEGIT_EXPORT bool matches_suffix(const string str, const string suffix);
 
-bool matches_prefix(const string str, const string prefix);
+__LEGIT_EXPORT bool matches_prefix(const string str, const string prefix);
 
 #endif

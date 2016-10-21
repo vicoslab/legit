@@ -34,7 +34,7 @@
 #include <opencv2/core/core.hpp>
 
 #ifdef PLATFORM_WINDOWS
-#include "external/platform/stdint_win.h"
+#include "common/platform/windows/stdint_win.h"
 #else
 #include <stdint.h>
 #endif

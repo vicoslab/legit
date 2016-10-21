@@ -30,6 +30,8 @@
 #ifndef LEGIT_SEQUENCE
 #define LEGIT_SEQUENCE
 
+#include "common/export.h"
+
 #include <stdio.h>
 #include <string.h>
 #include <exception>
@@ -49,13 +51,13 @@ namespace common
 {
 
 
-class Sequence
+class __LEGIT_EXPORT Sequence
 {
 public:
 
   Sequence() {};
 
-  ~Sequence() {};
+  virtual ~Sequence() {};
 
   virtual bool read_frame(Mat& img) = 0;
 
@@ -79,13 +81,13 @@ public:
 };
 
 
-class VideoFileSequence : public Sequence
+class __LEGIT_EXPORT VideoFileSequence : public Sequence
 {
 public:
 
   VideoFileSequence(const char* file, int start=-1, int end=-1);
 
-  ~VideoFileSequence();
+  virtual ~VideoFileSequence();
 
   virtual bool read_frame(Mat& img);
 
@@ -125,13 +127,13 @@ protected:
 
 };
 
-class CameraSequence : public Sequence
+class __LEGIT_EXPORT CameraSequence : public Sequence
 {
 public:
 
   CameraSequence(int camera);
 
-  ~CameraSequence();
+  virtual ~CameraSequence();
 
   virtual bool read_frame(Mat& img);
 
@@ -158,13 +160,13 @@ protected:
 
 };
 
-class ImageFileListSequence : public Sequence
+class __LEGIT_EXPORT ImageFileListSequence : public Sequence
 {
 public:
 
   ImageFileListSequence();
 
-  ~ImageFileListSequence();
+  virtual ~ImageFileListSequence();
 
   virtual bool read_frame(Mat& img);
 
@@ -204,13 +206,13 @@ protected:
 };
 
 
-class FileListSequence : public ImageFileListSequence
+class __LEGIT_EXPORT FileListSequence : public ImageFileListSequence
 {
 public:
 
   FileListSequence(const char* listing);
 
-  ~FileListSequence();
+  virtual ~FileListSequence();
 
   const char* get_listing();
 
@@ -223,13 +225,13 @@ protected:
   virtual bool load_list();
 };
 
-class ImageDirectorySequence : public ImageFileListSequence
+class __LEGIT_EXPORT  ImageDirectorySequence : public ImageFileListSequence
 {
 public:
 
   ImageDirectorySequence(const char* directory, int start=-1, int end=-1);
 
-  ~ImageDirectorySequence();
+  virtual ~ImageDirectorySequence();
 
   const char* get_directory();
 
@@ -244,7 +246,7 @@ protected:
   virtual bool load_list();
 };
 
-Sequence* open_sequence(const char* name);
+__LEGIT_EXPORT Sequence* open_sequence(const char* name);
 
 
 }

@@ -40,8 +40,6 @@ int compare_cost_pair (const void* i, const void* j)
 }
 
 LGTTracker::LGTTracker(Config& config, string inst) :
-  patches(6, 30),
-  modalities(config),
   verbosity(config.read<int>("tracker.verbosity", 0)),
   probability_size(config.read<int>("sampling.size")),
   global_optimization(
@@ -58,7 +56,9 @@ LGTTracker::LGTTracker(Config& config, string inst) :
     config.read<int>("optimization.local.elite", 5),
     config.read<int>("optimization.local.iterations", 10),
     config.read<float>("optimizationl.local.terminate", 0.001)),
-  motion(4, 2, 0)
+  motion(4, 2, 0),
+  patches(6, 30),
+  modalities(config)
 {
 
   instance = inst;
@@ -369,9 +369,6 @@ void LGTTracker::track(Image& image, bool announce, bool push, DebugOutput* debu
 
         //proxy.rectangle(region(), Scalar(0, 255, 0), 2);
 
-        float ppx = statePost.at<float>(2, 0) ;
-        float ppy = statePost.at<float>(3, 0) ;
-
         pred.x = mean.x + statePost.at<float>(2, 0) * motion.transitionMatrix.at<float>(0, 2) ;
         pred.y = mean.y + statePost.at<float>(3, 0) * motion.transitionMatrix.at<float>(1, 3) ;
         proxy.line(mean, pred, Scalar(100, 255, 120), 2);
@@ -415,8 +412,6 @@ void LGTTracker::stage_optimization(Image& image, bool announce, bool push, Debu
 
   if (announce) notify_stage(STAGE_OPTIMIZATION_GLOBAL);
 
-  cv::Point2f center = patches.mean_position();
-
   OptimizationStatus status(patches);
 
   if (optimization_global_R < 0.00001 && optimization_global_S < 0.00001)
@@ -448,7 +443,7 @@ void LGTTracker::stage_optimization(Image& image, bool announce, bool push, Debu
 //printpoint(status[i].position);
       PatchStatus ps = status.get(i);
       patches.set_position(i, ps.position);
-      float value = exp(-patches.response(image, i, ps.position)); //
+      //float value = exp(-patches.response(image, i, ps.position)); //
       //  if (value > 0.8) status.set_flags(i, OPTIMIZATION_FIXED); // Zakaj mora biti vecji ravno od 0.8
 
 //        }
@@ -732,9 +727,6 @@ void LGTTracker::visualize(Canvas& canvas)
 
       canvas.rectangle(region(), Scalar(0, 255, 0), 2);
 
-      float ppx = statePost.at<float>(2, 0) ;
-      float ppy = statePost.at<float>(3, 0) ;
-
       pred.x = mean.x + statePost.at<float>(2, 0) * motion.transitionMatrix.at<float>(0, 2) ;
       pred.y = mean.y + statePost.at<float>(3, 0) * motion.transitionMatrix.at<float>(1, 3) ;
       canvas.line(mean, pred, Scalar(100, 255, 120), 2);
@@ -759,7 +751,7 @@ vector<cv::Point> LGTTracker::get_patch_positions()
 void  LGTTracker::notify_observers(int channel, void* data, int flags)
 {
 
-  for (int i = 0; i < observers.size(); i++)
+  for (size_t i = 0; i < observers.size(); i++)
     {
       observers[i]->notify(this, channel, data, flags);
     }
@@ -789,7 +781,7 @@ bool LGTTracker::is_tracking()
 void LGTTracker::notify_stage(int stage)
 {
 
-  for (int i = 0; i < observers.size(); i++)
+  for (size_t i = 0; i < observers.size(); i++)
     {
       int s = stage;
       observers[i]->notify(this, OBSERVER_CHANNEL_MAIN, &s, 0);

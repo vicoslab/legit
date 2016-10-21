@@ -42,6 +42,7 @@ int read_file(const char* filename, char** buffer)
           if (bufsize == -1)
             {
               /* Error */
+              return -1;
             }
 
           /* Allocate our buffer to that size. */
@@ -62,8 +63,11 @@ int read_file(const char* filename, char** buffer)
             }
         }
       fclose(fp);
+
+      return 0;
     }
 
+  return -1;
 }
 
 //free(source); /* Don't forget to call free() later! */

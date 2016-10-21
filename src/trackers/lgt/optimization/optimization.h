@@ -140,6 +140,7 @@ class DelaunayConstraints : public Constraints
 public:
 
   DelaunayConstraints(PatchSet& patches);
+  virtual ~DelaunayConstraints();
 
   virtual float constraint(int i, int j);
 

@@ -198,9 +198,9 @@ DelaunayConstraints::DelaunayConstraints(PatchSet& patches)
   delete [] D;
 
   C.setTo(0.0);
-  for (int i = 0; i < neighborhoods.size(); i++)
+  for (size_t i = 0; i < neighborhoods.size(); i++)
     {
-      for (int j = 0; j < neighborhoods[i].size(); j++)
+      for (size_t j = 0; j < neighborhoods[i].size(); j++)
         {
           C.at<double>(i, neighborhoods[i][j]) = 1.0;
         }
@@ -208,6 +208,10 @@ DelaunayConstraints::DelaunayConstraints(PatchSet& patches)
 
   delete [] positions;
 
+}
+
+DelaunayConstraints::~DelaunayConstraints()
+{
 }
 
 float DelaunayConstraints::constraint(int i, int j)

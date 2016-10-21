@@ -30,6 +30,8 @@
 #ifndef UTILS_H
 #define UTILS_H
 
+#include "common/export.h"
+
 #include <stdio.h>
 #include <string.h>
 #include <sstream>
@@ -65,27 +67,27 @@ namespace legit
 namespace common
 {
 
-void printpoint(Point2f p);
+__LEGIT_EXPORT void printpoint(Point2f p);
 
-void printsize(cv::Size s);
+__LEGIT_EXPORT void printsize(cv::Size s);
 
-void printsize(Mat& A);
+__LEGIT_EXPORT void printsize(Mat& A);
 
-void printrect(cv::Rect r);
+__LEGIT_EXPORT void printrect(cv::Rect r);
 
-void printmat(Mat& A);
+__LEGIT_EXPORT void printmat(Mat& A);
 
-void read_csv(Mat& mat, const char* file, char delimiter = ',');
+__LEGIT_EXPORT void read_csv(Mat& mat, const char* file, char delimiter = ',');
 
-cv::Rect get_roi(Mat& m);
+__LEGIT_EXPORT cv::Rect get_roi(Mat& m);
 
-void patch_operation(Mat& target, Mat& patch, cv::Point position, int operation, int origin = ORIGIN_CENTER);
+__LEGIT_EXPORT void patch_operation(Mat& target, Mat& patch, cv::Point position, int operation, int origin = ORIGIN_CENTER);
 
-void patch_create(Mat& patch, int width, int height, int type, int flags = 0);
+__LEGIT_EXPORT void patch_create(Mat& patch, int width, int height, int type, int flags = 0);
 
-cv::Rect get_mask_bounds(Mat& mat);
+__LEGIT_EXPORT cv::Rect get_mask_bounds(Mat& mat);
 
-const string describe_mat_type(int cvtype);
+__LEGIT_EXPORT const string describe_mat_type(int cvtype);
 
 template <typename T>
 void replace_values(Mat& mat, T find, T replace)
@@ -108,7 +110,7 @@ string as_string( const T & t )
   return os.str();
 }
 
-struct LegitException : public std::exception
+struct __LEGIT_EXPORT LegitException : public std::exception
 {
   std::string s;
   LegitException(std::string ss);

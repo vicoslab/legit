@@ -231,6 +231,7 @@ bool ImageFileListSequence::load_list()
       frm.release();
     }
 
+  return true;
 }
 
 bool ImageFileListSequence::read_frame(Mat& img)
@@ -311,7 +312,7 @@ void ImageFileListSequence::list_files()
 
 }
 
-FileListSequence::FileListSequence(const char* listing) : sequence_listing(listing), ImageFileListSequence()
+FileListSequence::FileListSequence(const char* listing) : ImageFileListSequence(), sequence_listing(listing)
 {
 
   load_list();
@@ -338,7 +339,7 @@ bool FileListSequence::load_list()
 
   read_listing(sequence_listing);
 
-  ImageFileListSequence::load_list();
+  return ImageFileListSequence::load_list();
 
 }
 
@@ -368,9 +369,10 @@ bool FileListSequence::read_listing(const string listing)
     }
   else throw LegitException("Unable to read file");
 
+  return true;
 }
 
-ImageDirectorySequence::ImageDirectorySequence(const char* directory, int start, int end) : sequence_source(directory), ImageFileListSequence()
+ImageDirectorySequence::ImageDirectorySequence(const char* directory, int start, int end) : ImageFileListSequence(), sequence_source(directory)
 {
 
   scan_directory(string(directory));
@@ -403,7 +405,7 @@ bool ImageDirectorySequence::load_list()
 
   scan_directory(sequence_source);
 
-  ImageFileListSequence::load_list();
+  return ImageFileListSequence::load_list();
 
 }
 

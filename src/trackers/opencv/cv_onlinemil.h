@@ -657,9 +657,9 @@ private:
 public:
   ClfAdaBoost()
     :
+    _numsamples(0),
     _sumAlph(0),
-    _myParams(0),
-    _numsamples(0)
+    _myParams(0)
   {
   }
   virtual void

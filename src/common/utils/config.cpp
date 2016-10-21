@@ -39,7 +39,7 @@ namespace common
 {
 
 Config::Config( string filename, string delimiter, string comment, string special, string sentry )
-  : myDelimiter(delimiter), myComment(comment), mySpecial(special), mySentry(sentry)
+  : myDelimiter(delimiter), myComment(comment), mySentry(sentry), mySpecial(special)
 {
   // Construct a Config, getting keys and values from given file
 

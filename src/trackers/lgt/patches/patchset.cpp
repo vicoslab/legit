@@ -72,7 +72,7 @@ void Patch::push()
 
 }
 
-PatchSet::PatchSet(int size) : psize(size), patches()
+PatchSet::PatchSet(int size) : patches(), psize(size)
 {
 
 }
@@ -178,7 +178,7 @@ Point2f PatchSet::mean_position(bool weighted)
   Point2f mean;
   float wsum = 0;
 
-  for (int i = 0; i < patches.size(); i++)
+  for (size_t i = 0; i < patches.size(); i++)
     {
       float w = weighted ? patches[i]->get_weight() : 1;
       Point2f p = patches[i]->get_position();
@@ -199,7 +199,7 @@ Matrix2f PatchSet::position_covariance(bool weighted)
   Matrix pt = Mat::zeros(patches.size(), 2, CV_32F);
   Matrix we = Mat::zeros(patches.size(), 1, CV_32F);
 
-  for (int i = 0; i < patches.size(); i++)
+  for (size_t i = 0; i < patches.size(); i++)
     {
       Point2f p = patches[i]->get_position();
       pt(i, 0) = p.x;
@@ -231,7 +231,7 @@ Rect4f PatchSet::region()
   r.x = INT_MAX;
   r.y = INT_MAX;
   int x2 = 0, y2 = 0;
-  for (int i = 0; i < patches.size(); i++)
+  for (size_t i = 0; i < patches.size(); i++)
     {
       Point2f p = patches[i]->get_position();
       r.x = MIN(p.x, r.x);
@@ -258,7 +258,7 @@ void PatchSet::print_all()
 
   printf("\n*** Patches object summary: %d patches ***\n\n", (int)patches.size());
 
-  for (int i = 0; i < patches.size(); i++)
+  for (size_t i = 0; i < patches.size(); i++)
     {
       Point2f p = patches[i]->get_position();
       printf("Position = (%.2f, %.2f), Weight = %.2f, Age = %d\n", p.x, p.y,  patches[i]->get_weight(0),  patches[i]->get_age());
@@ -305,7 +305,7 @@ Patches::~Patches()
 void Patches::push()
 {
 
-  for (int i = 0; i < patches.size(); i++)
+  for (size_t i = 0; i < patches.size(); i++)
     {
       patches[i]->push();
     }
@@ -315,7 +315,7 @@ void Patches::push()
 void Patches::move(Point2f vector)
 {
 
-  for (int i = 0; i < patches.size(); i++)
+  for (size_t i = 0; i < patches.size(); i++)
     patches[i]->move_position(vector);
 
 }
@@ -366,7 +366,7 @@ void Patches::remove(int index)
 
 void Patches::remove(vector<int>& indices)
 {
-  for (int i = 0; i < indices.size(); i++)
+  for (size_t i = 0; i < indices.size(); i++)
     {
       patches[indices[i]].release();
     }
@@ -407,7 +407,7 @@ int Patches::merge(Image& image, vector<int>& indices, PatchType type)
 
   vector<PatchType> types;
 
-  for (int i = 0; i < indices.size(); i++)
+  for (size_t i = 0; i < indices.size(); i++)
     {
       Point2f m = patches[indices[i]]->get_position();
       float mw = patches[indices[i]]->get_weight();
@@ -441,7 +441,7 @@ int Patches::inhibit(Image& image, vector<int>& indices)
   int best = -1;
   float best_weight = 0;
 
-  for (int i = 0; i < indices.size(); i++)
+  for (size_t i = 0; i < indices.size(); i++)
     {
       if (patches[indices[i]]->get_weight() > best_weight)
         {
@@ -450,7 +450,7 @@ int Patches::inhibit(Image& image, vector<int>& indices)
         }
     }
 
-  for (int i = 0; i < indices.size(); i++)
+  for (size_t i = 0; i < indices.size(); i++)
     {
       if (indices[i] == best) continue;
       // a hacky way to remove patches with as little fuss as possible

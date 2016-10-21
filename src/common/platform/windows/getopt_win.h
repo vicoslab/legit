@@ -41,15 +41,17 @@ Code given out at the 1985 UNIFORUM conference in Dallas.
 #ifndef _WINGETOPT_H_
 #define _WINGETOPT_H_
 
+#include "common/export.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-extern int opterr;
-extern int optind;
-extern int optopt;
-extern char *optarg;
-extern int getopt(int argc, char **argv, char *opts);
+__LEGIT_EXPORT extern int opterr;
+__LEGIT_EXPORT extern int optind;
+__LEGIT_EXPORT extern int optopt;
+__LEGIT_EXPORT extern char *optarg;
+__LEGIT_EXPORT extern int getopt(int argc, char **argv, char *opts);
 
 #ifdef __cplusplus
 }

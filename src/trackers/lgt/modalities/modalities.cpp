@@ -93,7 +93,7 @@ Modalities::~Modalities()
 void Modalities::flush()
 {
 
-  for (int i = 0; i < modalities.size(); i++)
+  for (size_t i = 0; i < modalities.size(); i++)
     {
       modalities[i]->flush();
     }
@@ -103,7 +103,7 @@ void Modalities::flush()
 void Modalities::update(Image& image, PatchSet* patches, Rect bounds)
 {
 
-  for (int i = 0; i < modalities.size(); i++)
+  for (size_t i = 0; i < modalities.size(); i++)
     {
       modalities[i]->update(image, patches, bounds);
     }
@@ -146,12 +146,12 @@ void Modalities::probability(Image& image, Mat& p)
         }
     }
 
-  for (int i = 0; i < modalities.size(); i++)
+  for (size_t i = 0; i < modalities.size(); i++)
     {
 
       if (!modalities[i]->usable())
         {
-          DEBUGMSG("Modality %d not usable \n", i+1);
+          DEBUGMSG("Modality %lu not usable \n", (unsigned long)(i+1));
           continue;
         }
 
@@ -162,7 +162,7 @@ void Modalities::probability(Image& image, Mat& p)
       if (debugCanvas->get_zoom() > 0)
         {
           char namestring[32];
-          sprintf(namestring, "Modality %d", i);
+          sprintf(namestring, "Modality %lu", (unsigned long)(i));
           debugCanvas->draw(pmap, modalityOffset, IMAGE_SCALE);
           debugCanvas->text(modalityOffset + cv::Point(10, 20), string(namestring), COLOR_RED);
 

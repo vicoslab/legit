@@ -31,18 +31,30 @@
 #include <string.h>
 #include <sstream>
 #include <exception>
+#include "../filesystem.h"
+#include "filesystem.h"
 
-namespace legit
-{
-
-namespace common
-{
+#include <sys/stat.h>
+#define S_ISREG(m) (((m) & _S_IFMT) == _S_IFREG)
+#define S_ISDIR(m) (((m) & _S_IFMT) == _S_IFDIR)
 
 int file_type(const char* filename)
 {
 
-#pragma message ("Warning : must implement")
-  return FILETYPE_FILE ;
+  struct stat buf;
+  if (stat (filename, &buf) == -1 && errno == ENOENT)
+    return FILETYPE_NONE;
+
+  if (S_ISREG (buf.st_mode))
+    {
+      return FILETYPE_FILE;
+    }
+  if (S_ISDIR (buf.st_mode))
+    {
+      return FILETYPE_DIRECTORY;
+    }
+
+  return FILETYPE_OTHER;
 
 }
 
@@ -73,9 +85,5 @@ string path_parent(string path)
     {
       return path.substr(0, loc);
     }
-
-}
-
-}
 
 }

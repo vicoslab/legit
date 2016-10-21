@@ -29,13 +29,19 @@
 #ifndef __PLATFORM_FILESYSTEM_WINDOWS_H
 #define __PLATFORM_FILESYSTEM_WINDOWS_H
 
+#include "common/export.h"
+
+#include <string>
+
+using namespace std;
+
 #define FILE_DELIMITER '\\'
 #define FILE_DELIMITER_STR "\\"
 
-int file_type(const char* filename);
+__LEGIT_EXPORT int file_type(const char* filename);
 
-string path_join(string root, string path);
+__LEGIT_EXPORT string path_join(string root, string path);
 
-string path_parent(string path);
+__LEGIT_EXPORT string path_parent(string path);
 
 #endif

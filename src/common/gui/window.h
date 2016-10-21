@@ -30,6 +30,8 @@
 #ifndef LEGIT_WINDOW
 #define LEGIT_WINDOW
 
+#include "common/export.h"
+
 #include <stdio.h>
 #include <string.h>
 #include <exception>
@@ -45,7 +47,7 @@ namespace common
 {
 
 
-class ImageWindow : public ImageCanvas
+class __LEGIT_EXPORT ImageWindow : public ImageCanvas
 {
 public:
   static ImageWindow* create(string t, cv::Size size, bool aup = true);

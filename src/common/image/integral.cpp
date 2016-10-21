@@ -171,7 +171,7 @@ void IntegralImage::print()
 
 }
 
-IntegralHistogram::IntegralHistogram(Mat& src, int bins) : data(NULL), bins(bins)
+IntegralHistogram::IntegralHistogram(Mat& src, int bins) : bins(bins), data(NULL)
 {
 
 

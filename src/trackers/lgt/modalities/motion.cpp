@@ -112,7 +112,7 @@ void ModalityMotionLK::update(Image& image, PatchSet* patchSet, Rect bounds)
       map.setTo(0);
     }
 
-  float texture_threshold = 3;
+//  float texture_threshold = 3;
 
   // a simple hack (otherwise this function takes too much time)
   Rect roi = intersection(image.get_roi(), expand(patches->region(), 50));
@@ -134,7 +134,7 @@ void ModalityMotionLK::update(Image& image, PatchSet* patchSet, Rect bounds)
       }
   */
   goodFeaturesToTrack(grayscale(roi), points, 150, 0.05, 8, Mat(), block_size);
-  for (int i = 0; i < points.size(); i++)
+  for (size_t i = 0; i < points.size(); i++)
     points[i] += offset;
 
   TermCriteria termination =
@@ -170,7 +170,7 @@ void ModalityMotionLK::update(Image& image, PatchSet* patchSet, Rect bounds)
   //Point2f referenceMotion = motion.get(step-1) -  motion.get(0);
   Point2f referenceMotion = motion.get(0);
 
-  for (int i = 0; i < points.size(); i++)
+  for (size_t i = 0; i < points.size(); i++)
     {
       if (!status[i]) continue;
 

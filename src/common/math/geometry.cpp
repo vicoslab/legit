@@ -235,7 +235,7 @@ Matrix3f compute_affine_transformation(vector<Point2f> from, vector<Point2f> to)
 
       A.setTo(0);
 
-      for (int i = 0; i < from.size(); i++)
+      for (size_t i = 0; i < from.size(); i++)
         {
           A(i*2, 0) = from[i].x;
           A(i*2, 1) = from[i].y;
@@ -285,12 +285,12 @@ Matrix3f compute_affine_transformation(vector<Point2f> from, vector<Point2f> to,
 
   float weights_total = 0;
 
-  for (int i = 0; i < from.size(); i++)
+  for (size_t i = 0; i < from.size(); i++)
     {
       weights_total += weights[i];
     }
 
-  for (int i = 0; i < from.size(); i++)
+  for (size_t i = 0; i < from.size(); i++)
     {
       float w = sqrt(weights[i] / (2 * weights_total));
 
@@ -338,12 +338,12 @@ Rect4f compute_bounds(Rect4f bounds, vector<Point2f> from, vector<Point2f> to, v
 
   float weights_total = 0;
 
-  for (int i = 0; i < from.size(); i++)
+  for (size_t i = 0; i < from.size(); i++)
     {
       weights_total += weights[i];
     }
 
-  for (int i = 0; i < from.size(); i++)
+  for (size_t i = 0; i < from.size(); i++)
     {
       float w = sqrt(weights[i] / (2 * weights_total));
 

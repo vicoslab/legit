@@ -691,7 +691,6 @@ FeatureHaar::generateRandomFeature(Size patchSize)
   Size sizeFactor;
   int area;
 
-  Size minSize = Size(3, 3);
   int minArea = 9;
 
   bool valid = false;
@@ -1843,8 +1842,6 @@ StrongClassifierStandardSemi::updateSemi(ImageRepresentation *image, Rect ROI, f
 
   float value = 0.0f, kvalue = 0.0f;
 
-  bool decided = false;
-  bool uncertain = false;
   bool used = false;
   float sumAlpha = 0;
 
@@ -1939,7 +1936,6 @@ Detector::classify(ImageRepresentation* image, Patches* patches, float minMargin
   m_numDetections = 0;
   m_idxBestDetection = -1;
   m_maxConfidence = -FLT_MAX;
-  int numBaseClassifiers = m_classifier->getNumBaseClassifier();
 
   for (int curPatch = 0; curPatch < numPatches; curPatch++)
     {
@@ -1973,7 +1969,6 @@ Detector::classifySmooth(ImageRepresentation* image, Patches* patches, float min
   m_numDetections = 0;
   m_idxBestDetection = -1;
   m_maxConfidence = -FLT_MAX;
-  int numBaseClassifiers = m_classifier->getNumBaseClassifier();
 
   PatchesRegularScan *regPatches = (PatchesRegularScan*) patches;
   Size patchGrid = regPatches->getPatchGrid();

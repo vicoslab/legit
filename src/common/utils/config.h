@@ -70,6 +70,8 @@
 #ifndef Config_H
 #define Config_H
 
+#include "common/export.h"
+
 #include <string>
 #include <map>
 #include <iostream>
@@ -86,7 +88,7 @@ namespace legit
 namespace common
 {
 
-class Config
+class __LEGIT_EXPORT Config
 {
 // Data
 protected:
@@ -150,8 +152,8 @@ public:
   vector<string> keys();
 
   // Write or read configuration
-  friend std::ostream& operator<<( std::ostream& os, const Config& cf );
-  friend std::istream& operator>>( std::istream& is, Config& cf );
+  __LEGIT_EXPORT friend std::ostream& operator<<( std::ostream& os, const Config& cf );
+  __LEGIT_EXPORT friend std::istream& operator>>( std::istream& is, Config& cf );
 
   void load_config(string file_name);
 

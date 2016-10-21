@@ -48,7 +48,6 @@ void _imagewindow_mousecallback(int event, int x, int y, int flags, void *param)
 {
 
   Rect *r = &(((MouseCallbackState*) param)->result);
-  ImageWindow* w = ((MouseCallbackState*) param)->window;
 
   if (event != EVENT_LBUTTONDOWN) return;
 
@@ -142,7 +141,7 @@ void ImageWindow::grid(int rows, int columns, int width, int height)
 {
   int c = 0, r = 0;
 
-  for (int i = 0; i < windows.size(); i++)
+  for (size_t i = 0; i < windows.size(); i++)
     {
 
       moveWindow(windows[i]->title.c_str(), c * width, r * height);

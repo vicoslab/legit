@@ -7,6 +7,18 @@ SET(CMAKE_MODULE_PATH ${PROJECT_ROOT}/cmake)
 INCLUDE(LegitUtilities REQUIRED)
 INCLUDE(PlatformUtilities REQUIRED)
 
+# Enable warnings for gcc
+if(CMAKE_COMPILER_IS_GNUCXX)
+    add_definitions(-Wall -Wextra)
+    add_definitions(-Wno-unused-parameter)
+    add_definitions(-Wno-deprecated-declarations)
+endif()
+
+if(MSVC)
+  add_definitions(/MP) # Build with multiple processes
+  add_definitions(/wd4244 /wd4267 /wd4018 /wd4355 /wd4800 /wd4251 /wd4996 /wd4146 /wd4305) # Ignore some of the warnings
+endif()
+
 ADD_DEFINITIONS(-DSOURCE_COMPILE_ROOT="${PROJECT_ROOT}/src/")
 
 SET(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_BINARY_DIR})
@@ -63,11 +75,10 @@ set_property(SOURCE src/tracker.cpp APPEND PROPERTY OBJECT_DEPENDS "${BUILD_ROOT
 ADD_SUBDIRECTORY(src/api/)
 
 
+ADD_LIBRARY(legit_static STATIC ${LEGIT_SOURCES})
+ADD_LIBRARY(legit SHARED ${LEGIT_SOURCES})
 
-ADD_LIBRARY(legit_objects OBJECT ${LEGIT_SOURCES})
-ADD_LIBRARY(legit_static STATIC $<TARGET_OBJECTS:legit_objects>)
-ADD_LIBRARY(legit SHARED $<TARGET_OBJECTS:legit_objects>)
-
+TARGET_COMPILE_OPTIONS(legit_static PUBLIC -DLEGIT_STATIC_DEFINE)
 
 SET(BUILD_TRAX FALSE CACHE BOOL "Enable TraX protocol support (requires libtrax)")
 
@@ -83,5 +94,5 @@ ENDIF(BUILD_TRAX)
 ADD_EXECUTABLE(legit_runner src/runner.cpp)
 TARGET_LINK_LIBRARIES(legit_runner legit)
 
-INSTALL(TARGETS legit LIBRARY DESTINATION lib)
+INSTALL(TARGETS legit RUNTIME DESTINATION bin LIBRARY DESTINATION lib)
 INSTALL(FILES src/api/legit.h DESTINATION include)
